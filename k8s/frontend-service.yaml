@@ -10,3 +10,4 @@ spec:
   ports:
   - port: 8100
     targetPort: 80
+    protocol: TCP

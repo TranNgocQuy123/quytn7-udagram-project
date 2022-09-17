@@ -7,3 +7,4 @@ spec:
     app: backend-user
   ports:
   - port: 8100
+    protocol: TCP

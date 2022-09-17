@@ -2,18 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reverseproxy
+  labels:
+    service: reverseproxy
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: reverseproxy
+      service: reverseproxy
   template:
     metadata:
       labels:
-        app: reverseproxy
+        service: reverseproxy
     spec:
       containers:
       - name: udagram-reverseproxy
         image: trangocquy123/reverseproxy
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80

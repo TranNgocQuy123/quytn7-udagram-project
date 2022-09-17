@@ -9,3 +9,4 @@ spec:
     app: backend-feed
   ports:
   - port: 8100
+    protocol: TCP
