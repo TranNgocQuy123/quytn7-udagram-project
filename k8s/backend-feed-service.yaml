@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: backend-feed
   labels:
-    service: backend-feed
+    run: backend-feed
 spec:
-  selector:
-    app: backend-feed
   ports:
   - port: 8100
     protocol: TCP
+  selector:
+    run: backend-feed
