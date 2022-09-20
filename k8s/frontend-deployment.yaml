@@ -18,12 +18,7 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: trangocquy123/udagram-frontend
+        image: trangocquy123/udagram-frontend:v4
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 200m
+        - containerPort: 80

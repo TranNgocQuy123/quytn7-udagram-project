@@ -18,6 +18,8 @@ spec:
       - name: udagram-api-feed
         image: trangocquy123/udagram-api-feed
         imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
         env:
         - name: URL
           valueFrom:

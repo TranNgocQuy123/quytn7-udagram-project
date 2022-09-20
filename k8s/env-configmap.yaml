@@ -9,4 +9,4 @@ data:
   AWS_PROFILE: default
   POSTGRES_DB: trangocquytmt
   JWT_SECRET: testing
-  URL: http://localhost:8100
+  URL: http://a9999953150294caaa7f203a760686ee-1544556958.us-east-1.elb.amazonaws.com
