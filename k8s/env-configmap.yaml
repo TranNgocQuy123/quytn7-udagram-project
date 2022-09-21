@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_HOST: trangocquytmt.cx5g9rvsjgjd.us-east-1.rds.amazonaws.com
+  POSTGRES_HOST: trangocquytmt.c6ytruerkzqc.us-east-1.rds.amazonaws.com
   AWS_BUCKET: trangocquytmt
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   POSTGRES_DB: trangocquytmt
   JWT_SECRET: testing
-  URL: http://a9999953150294caaa7f203a760686ee-1544556958.us-east-1.elb.amazonaws.com
+  URL: http://localhost:8100

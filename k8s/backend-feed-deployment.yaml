@@ -3,23 +3,21 @@ kind: Deployment
 metadata:
   name: backend-feed
   labels: 
-    app: backend-feed
+    service: backend-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        app: backend-feed
+        service: backend-feed
     spec:
       containers:
       - name: udagram-api-feed
         image: trangocquy123/udagram-api-feed
         imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
         env:
         - name: URL
           valueFrom:
