@@ -4,18 +4,33 @@ version: 2.1
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # See: https://circleci.com/docs/orb-intro/
 orbs:
-  node: circleci/node@4.7
-
-# Invoke jobs via workflows
+  docker: circleci/docker@2.2.0
 # See: https://circleci.com/docs/configuration-reference/#workflows
+
+
+jobs:
+  build-and-push:
+    executor: docker/docker
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker image
+          command: |
+            docker-compose -f docker-compose-build.yaml build --parallel
+            docker tag udagram-api-feed trangocquy123/udagram-api-feed:v11
+            docker tag udagram-api-user trangocquy123/udagram-api-user:v11
+            docker tag reverseproxy trangocquy123/reverseproxy:v11
+            docker tag udagram-frontend:local trangocquy123/udagram-frontend:v11
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push trangocquy123/udagram-api-feed:v11
+            docker push trangocquy123/udagram-api-user:v11
+            docker push trangocquy123/reverseproxy:v11
+            docker push trangocquy123/udagram-frontend:v11
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  default:
     jobs:
-      - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
-          version: '16.10'
-          # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
+      - build-and-push
